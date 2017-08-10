@@ -16,7 +16,23 @@ module.exports = {
       gender: req.gender,
       date_of_birth: req.date_of_birth,
       phone: req.phone,
-      zk_event_id: req.zk_event_id
+      zk_event_id: req.zk_event_id,
+      first_time_flag: req.first_time_flag,
+      physician_name: req.physician_name,
+      physician_phone: req.physician_phone,
+      father_name: req.father_name,
+      mother_name: req.mother_name,
+      street: req.street,
+      city: req.city,
+      state: req.state,
+      postal_code: req.postal_code,
+      fathers_cell_phone: req.fathers_cell_phone,
+      mothers_cell_phone: req.mothers_cell_phone,
+      fathers_work_phone: req.fathers_work_phone,
+      mothers_work_phone: req.mothers_work_phone,
+      emergency_contact: req.emergency_contact,
+      emergency_home_phone: req.emergency_home_phone,
+      relationship_to_camper: req.relationship_to_camper
     })
     .returning('zkp_camper_id')
     .then(function (id){
