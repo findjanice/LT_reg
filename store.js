@@ -2,7 +2,9 @@ const knex = require('knex')(require('./knexfile'));
 
 // post Camper information to mysql WB_d_camper table
 
-
+knex.on( 'query', function( queryData ) {
+    console.log( queryData );
+});
 
 module.exports = {
   createCamper (req, res)  {
@@ -53,7 +55,7 @@ module.exports = {
 
   },
   loginAuth(req, res) {
-      console.log('autheticating user', req);
+      console.log('autheticating user, loginAuth', req.password);
       const pwd = req.password;
        return knex('WB_d_camper')
         .where({ group_user: req.username })

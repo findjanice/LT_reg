@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('loginCtrl', function($scope, $routeParams, $route, $location) {
+app.controller('loginCtrl', function($scope, $routeParams, $route, $location, loginSrvc) {
 
   this.state = $location.path();
 
@@ -9,7 +9,8 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location) {
   }
 
   $scope.login = function(data) {
-    registrationService.login(data).then(function(response) {
+    console.log(data);
+    loginSrvc.login(data).then(function(response) {
       console.log('this is login response', response);
       userId = response._id;
       console.log('this is userId', userId);
