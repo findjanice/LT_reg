@@ -4,5 +4,6 @@ module.exports = {
     user: 'janicea',
     password: 'jad3a',
     database: 'lt_data'
-  }
+  },
+  debug: true
 }

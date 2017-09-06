@@ -38,7 +38,7 @@ app.post('/initiateLogin', (req, res) => {
      password: req.body.password
    })
    .then((res, err) => {
-     console.log('this is res frm index.js', res);
+     return res;
    })
 })
 

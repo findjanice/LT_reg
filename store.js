@@ -55,7 +55,7 @@ module.exports = {
 
   },
   loginAuth(req, res) {
-      console.log('autheticating user, loginAuth', req.password);
+      console.log('autheticating user, loginAuth', req.username);
       const pwd = req.password;
        return knex('WB_d_camper')
         .where({ group_user: req.username })
@@ -72,7 +72,7 @@ module.exports = {
            }
          })
         .catch(function(error) {
-        return (error);
+        console.error(error);
         })
       }
 }
