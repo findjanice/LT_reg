@@ -11,7 +11,7 @@ this.login = function(data){
      data: data
    }).then(function(data){
      console.log(data);
-     userId = data._id;
+    //  userId = data._id;
      deferred.resolved(data.data)
    })
    return deferred.promise;

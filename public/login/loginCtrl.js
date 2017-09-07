@@ -9,6 +9,7 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location, lo
   }
 
   $scope.login = function(data) {
+        $location.path("/form");
     console.log(data);
     loginSrvc.login(data).then(function(response) {
       console.log('this is login response', response);
@@ -18,7 +19,7 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location, lo
         $scope.error = ""
 
       } else {
-        $location.path("/register");
+        $location.path("/form");
       }
 
     })
