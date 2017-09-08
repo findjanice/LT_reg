@@ -45,7 +45,7 @@ app.post('/initiateLogin', (req, res) => {
 
 app.get('/api/group/:id', (req,res) => {
   store
-  .fetchCampers({
+  .regbyId({
     zk_event_id: 190232175262205737430988705788995240460
   })
   .then((res, err) => {

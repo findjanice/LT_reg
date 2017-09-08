@@ -8,6 +8,8 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
     $location.path(path);
   }
 
+  $scope.fetchCamper 
+
 
 
   //end loginCtrl
