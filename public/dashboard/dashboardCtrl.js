@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location) {
+app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location, dashboardSrvc) {
 
   this.state = $location.path();
 
@@ -8,7 +8,14 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
     $location.path(path);
   }
 
-  $scope.fetchCamper 
+  $scope.fetchCampers = function(data) {
+   console.log('this is in controller', data);
+   dashboardSrvc.fetchCampers(data)
+     .then(function(data) {
+       console.log('this is fetchCampers data', data);
+     })
+  };
+
 
 
 

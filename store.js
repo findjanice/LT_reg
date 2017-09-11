@@ -7,9 +7,11 @@ knex.on( 'query', function( queryData ) {
 });
 
 module.exports = {
-  createCamper (req, res)  {
+  updateCamper (req, res)  {
     console.log('this is req in store.js', req);
-    return knex('WB_d_camper').insert({
+    return knex('WB_d_camper')
+    .where({ zkp_camper_id: 2 })
+    .update({
       name_first:  req.name_first,
       name_middle: req.name_middle,
       name_last: req.name_last,
@@ -41,7 +43,8 @@ module.exports = {
       console.log('this is return id', id);
     })
   },
-  fetchCampers (req, res) {
+  fetchCampers(req, res) {
+    console.log('this is req in store.js fetchCampers', req);
     return knex('WB_d_camper').where ({
       zk_event_id: req.zk_event_id
     })
