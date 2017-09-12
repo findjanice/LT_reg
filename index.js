@@ -42,15 +42,15 @@ app.post('/initiateLogin', (req, res) => {
 })
 
 
-app.get('/api/fetchCampers/:id', (req,res) => {
+app.get('/api/fetchCampers/:id', (req,res, id) => {
     console.log('req fetchCampers', req.params);
   store
   .fetchCampers({
     zk_event_id: req.params.id
   })
-  .then((res, err) => {
-    console.log('this is res fetchCampers', res);
-    res.json(null);
+  .then((response) => {
+    console.log('this is res fetchCampers', response);
+    return res.send(response);
   })
   .catch((error) => {
     console.log('this is error, fetchCampers', error)

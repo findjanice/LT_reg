@@ -36,7 +36,8 @@ module.exports = {
       mothers_work_phone: req.mothers_work_phone,
       emergency_contact: req.emergency_contact,
       emergency_home_phone: req.emergency_home_phone,
-      relationship_to_camper: req.relationship_to_camper
+      relationship_to_camper: req.relationship_to_camper,
+      registration_date: Date.now();
     })
     .returning('zkp_camper_id')
     .then(function (id){
