@@ -8,7 +8,7 @@ this.fetchCampers = function(data) {
       method: 'GET',
       data: data
     }).then(function(response) {
-      console.log('this is response data SRVC', response)
+      console.log('this is response data SRVC', response.data)
       deferred.resolve(response.data)
     })
     return deferred.promise;

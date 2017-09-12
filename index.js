@@ -50,11 +50,10 @@ app.get('/api/fetchCampers/:id', (req,res) => {
   })
   .then((res, err) => {
     console.log('this is res fetchCampers', res);
-    res.status(200).json(res);
+    res.json(null);
   })
   .catch((error) => {
-    console.log('this is error', error)
-    res.status(500).json({error})
+    console.log('this is error, fetchCampers', error)
   })
 })
 
