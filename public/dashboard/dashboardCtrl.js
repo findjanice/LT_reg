@@ -12,7 +12,14 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
    console.log('this is in controller', data);
    dashboardSrvc.fetchCampers(data)
      .then(function(data) {
+
        $scope.camper = data;
+      //  for (var key in data) {
+      //    if (data.hasOwnProperty(key)) {
+      //
+      //    }
+      //  }
+
        console.log('this is fetchCampers data', data);
      })
   };
