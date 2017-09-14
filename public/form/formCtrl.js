@@ -1,6 +1,9 @@
 'use strict';
 
-app.controller('formCtrl', function($scope, $routeParams, $route, $location, formSrvc) {
+app.controller('formCtrl', function($scope, $routeParams, $route, $location, formSrvc, dashboardSrvc) {
+
+
+  $scope.camperId = $routeParams.camper;
 
   this.state = $location.path();
 
@@ -14,6 +17,18 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
        console.log('this is updateCamper data', data);
      })
  };
+
+  $scope.getCamperInfo = function() {
+    formSrvc.getCamperInfo($scope.camperId).then(function(response) {
+      console.log('this is response data, ', response);
+      $scope.camperData = response[0];
+      console.log('this is camperData', $scope.camperData);
+    })
+  }
+
+  $scope.getCamperInfo();
+
+
 
 
 

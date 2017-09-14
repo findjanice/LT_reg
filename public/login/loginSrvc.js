@@ -1,7 +1,6 @@
 app.service('loginSrvc', function($http, $q, $location){
 
-
-this.userId;
+var campers;
 
 this.login = function(data){
    var deferred = $q.defer();
@@ -9,17 +8,16 @@ this.login = function(data){
      url:'/initiateLogin',
      method: 'POST',
      data: data
-   }).then(function(data){
-     console.log(data);
-    //  userId = data._id;
-     deferred.resolved(data.data)
+   }).then(function(response){
+      campers = response.data;
+     deferred.resolve(response.data)
    })
    return deferred.promise;
-
-
 }
 
-
+this.getCampers = function() {
+    return campers;
+  }
 
 
 })

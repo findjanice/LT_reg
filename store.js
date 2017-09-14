@@ -36,8 +36,7 @@ module.exports = {
       mothers_work_phone: req.mothers_work_phone,
       emergency_contact: req.emergency_contact,
       emergency_home_phone: req.emergency_home_phone,
-      relationship_to_camper: req.relationship_to_camper,
-      registration_date: Date.now();
+      relationship_to_camper: req.relationship_to_camper
     })
     .returning('zkp_camper_id')
     .then(function (id){
@@ -47,7 +46,7 @@ module.exports = {
   fetchCampers(req, res) {
     console.log('this is req in store.js fetchCampers', req);
     return knex('WB_d_camper').where ({
-      zk_event_id: req.zk_event_id
+      zkp_camper_id: req.zkp_camper_id
     })
     .select()
     .then(function(res){
@@ -63,14 +62,15 @@ module.exports = {
       const pwd = req.password;
        return knex('WB_d_camper')
         .where({ group_user: req.username })
-        .select('group_password')
+        .select()
         .then(function(res) {
            if (!res || !res[0])  {  // not found!
              return('fail');
            }
            var pass = res[0].group_password;
            if (pwd === pass) {
-             return('success');
+             return(res);
+            //  return('success');
            } else {
                return('fail');
            }

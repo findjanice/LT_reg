@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
       templateUrl: 'dashboard/dashboard.html',
       controller: 'dashboardCtrl'
     })
-    .when('/form', {
+    .when('/form/:camper', {
       templateUrl: 'form/form.html',
       controller: 'formCtrl'
     })

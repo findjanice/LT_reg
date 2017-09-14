@@ -1,13 +1,17 @@
 app.service('dashboardSrvc', function($http, $q) {
 
 
-this.fetchCampers = function(data) {
+var camperInfo;
+
+this.fetchCampers = function(id) {
+  console.log('this is fetchCampers data', id);
     var deferred = $q.defer();
     $http({
-      url: '/api/fetchCampers/' + '129307779235000408982809664554043678512',
+      url: '/api/fetchCampers/' + id,
       method: 'GET',
-      data: data
+      data: id
     }).then(function(response) {
+      camperInfo = response.data;
       console.log('this is response data SRVC', response.data)
       deferred.resolve(response.data)
     })
@@ -15,6 +19,8 @@ this.fetchCampers = function(data) {
   }
 
 
-
+this.camperInfo = function() {
+  return camperInfo;
+}
     //end service
    })

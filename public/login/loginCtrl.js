@@ -9,17 +9,13 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location, lo
   }
 
   $scope.login = function(data) {
-        $location.path("/form");
-    console.log(data);
     loginSrvc.login(data).then(function(response) {
-      console.log('this is login response', response);
-      userId = response._id;
-      console.log('this is userId', userId);
-      if (response === "incorrect login") {
-        $scope.error = ""
-
+      if (response === "fail") {
+        $scope.error = true;
+        $scope.user = {};
       } else {
-        $location.path("/form");
+
+        $location.path("/dashboard");
       }
 
     })

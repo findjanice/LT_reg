@@ -36,8 +36,8 @@ app.post('/initiateLogin', (req, res) => {
      username: req.body.username,
      password: req.body.password
    })
-   .then((res, err) => {
-     return res;
+   .then((response, err) => {
+     return res.send(response);
    })
 })
 
@@ -46,7 +46,7 @@ app.get('/api/fetchCampers/:id', (req,res, id) => {
     console.log('req fetchCampers', req.params);
   store
   .fetchCampers({
-    zk_event_id: req.params.id
+    zkp_camper_id: req.params.id
   })
   .then((response) => {
     console.log('this is res fetchCampers', response);

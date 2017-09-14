@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location, dashboardSrvc) {
+app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location, dashboardSrvc, loginSrvc) {
 
   this.state = $location.path();
 
@@ -8,23 +8,32 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
     $location.path(path);
   }
 
-  $scope.fetchCampers = function(data) {
-   console.log('this is in controller', data);
-   dashboardSrvc.fetchCampers(data)
-     .then(function(data) {
+  $scope.campers = function() {
+    $scope.camper = loginSrvc.getCampers();
+  }
 
-       $scope.camper = data;
-      //  for (var key in data) {
-      //    if (data.hasOwnProperty(key)) {
-      //
-      //    }
-      //  }
+  $scope.campers();
 
-       console.log('this is fetchCampers data', data);
-     })
-  };
+  $scope.fetchCampers = function(id) {
+    dashboardSrvc.fetchCampers(id).then(function(response){
+        $location.path("/form/" + id);
+
+    })
+  }
 
 
+  $scope.login = function(data) {
+    loginSrvc.login(data).then(function(response) {
+      if (response === "fail") {
+        $scope.error = true;
+        $scope.user = {};
+      } else {
+
+        $location.path("/dashboard");
+      }
+
+    })
+  }
 
 
   //end loginCtrl
