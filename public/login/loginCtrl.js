@@ -14,8 +14,13 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location, lo
         $scope.error = true;
         $scope.user = {};
       } else {
+            if (!response[0].zk_group_id) {
+                  $location.path("/dashboard/" + response[0].zk_event_id);
+            }
+            else {
+              $location.path("/dashboard/" + response[0].zk_event_id + "/" + response[0].zk_group_id);
+            }
 
-        $location.path("/dashboard");
       }
 
     })

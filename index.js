@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 //endpoints
 
-app.put('/api/updateCamper/', (req, res) => {
+app.put('/api/updateCamper/:id', (req, res, id) => {
   console.log('req updateCamper', req.body);
   store
     .updateCamper({
@@ -25,7 +25,24 @@ app.put('/api/updateCamper/', (req, res) => {
       email: req.body.email,
       gender: req.body.gender,
       date_of_birth: req.body.date_of_birth,
-      phone: req.body.phone
+      phone: req.body.phone,
+      zkp_camper_id: req.params.id,
+      first_time_flag: req.body.first_time_flag,
+      physician_name: req.body.physician_name,
+      physician_phone: req.body.physician_phone,
+      father_name: req.body.father_name,
+      mother_name: req.body.mother_name,
+      street: req.body.street,
+      city: req.body.city,
+      state: req.body.state,
+      postal_code: req.body.postal_code,
+      fathers_cell_phone: req.body.fathers_cell_phone,
+      mothers_cell_phone: req.body.mothers_cell_phone,
+      fathers_work_phone: req.body.fathers_work_phone,
+      mothers_work_phone: req.body.mothers_work_phone,
+      emergency_contact: req.body.emergency_contact,
+      emergency_home_phone: req.body.emergency_home_phone,
+      relationship_to_camper: req.body.relationship_to_camper
     })
     .then(() => res.sendStatus(200))
 })
@@ -56,6 +73,37 @@ app.get('/api/fetchCampers/:id', (req,res, id) => {
     console.log('this is error, fetchCampers', error)
   })
 })
+
+app.get('/api/fetchGroup/:event/group', (req,res, id) => {
+    console.log('req fetchCampers', req.params);
+  store
+  .fetchCampers({
+    zk_event_id: req.params.id
+  })
+  .then((response) => {
+    console.log('this is res fetchCampers', response);
+    return res.send(response);
+  })
+  .catch((error) => {
+    console.log('this is error, fetchCampers', error)
+  })
+})
+
+
+app.delete('/api/removeCamper/:id', (req, res, id)+ {
+   store
+   .removeCamper({
+     zkp_camper_id: req.params.id
+   }).then((response) = {
+     return res.send(response);
+   })
+   .catch((error) => {
+     console.log('this is error', error)
+   })
+
+
+})
+
 
 
 

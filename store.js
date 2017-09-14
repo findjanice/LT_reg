@@ -10,7 +10,7 @@ module.exports = {
   updateCamper (req, res)  {
     console.log('this is req in store.js', req);
     return knex('WB_d_camper')
-    .where({ zkp_camper_id: 2 })
+    .where({ zkp_camper_id: req.zkp_camper_id })
     .update({
       name_first:  req.name_first,
       name_middle: req.name_middle,
@@ -78,5 +78,18 @@ module.exports = {
         .catch(function(error) {
         console.error(error);
         })
+      },
+      removeCamper(req, res) {
+        return knex('WB_d_camper').where ({
+          zkp_camper_id: req.zkp_camper_id
+        })
+        .del()
+        .then(function(res){
+          return (res);
+        })
+        .catch(TypeError, function(err){
+          console.error('fail', err)
+        })
+
       }
 }

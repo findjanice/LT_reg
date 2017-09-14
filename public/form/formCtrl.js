@@ -28,6 +28,10 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
 
   $scope.getCamperInfo();
 
+  $scope.cancel = function() {
+      $location.path("/dashboard");
+  }
+
 
 
 

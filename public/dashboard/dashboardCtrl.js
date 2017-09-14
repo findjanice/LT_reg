@@ -17,21 +17,6 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
   $scope.fetchCampers = function(id) {
     dashboardSrvc.fetchCampers(id).then(function(response){
         $location.path("/form/" + id);
-
-    })
-  }
-
-
-  $scope.login = function(data) {
-    loginSrvc.login(data).then(function(response) {
-      if (response === "fail") {
-        $scope.error = true;
-        $scope.user = {};
-      } else {
-
-        $location.path("/dashboard");
-      }
-
     })
   }
 

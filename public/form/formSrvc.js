@@ -4,7 +4,7 @@ app.service('formSrvc', function($http, $q, $location){
      this.updateCamper = function(data) {
        var deferred = $q.defer();
        $http({
-         url: '/api/updateCamper/',
+         url: '/api/updateCamper/' + data,
          method: 'PUT',
          data: data
        }).then(function(response) {
