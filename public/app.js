@@ -11,6 +11,10 @@ app.config(function($routeProvider) {
       templateUrl: 'dashboard/dashboard.html',
       controller: 'dashboardCtrl'
     })
+    .when('/dashboard/:event', {
+      templateUrl: 'dashboard/dashboard.html',
+      controller: 'dashboardCtrl'
+    })
     .when('/form/:camper', {
       templateUrl: 'form/form.html',
       controller: 'formCtrl'

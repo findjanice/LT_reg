@@ -20,6 +20,18 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
     })
   }
 
+  // $scope.fetchGroup = function(params) {
+  //   var param1 = $routeParams.param1;
+  // var param2 = $routeParams.param2;
+  //   dashboardSrvc.fetchGroup(data).then(function(response){
+  //       $scope.camper = response.data;
+  //   })
+  // }
+  //
+  // $scope.fetchGroup();
+
+
+
 
   //end loginCtrl
 })
