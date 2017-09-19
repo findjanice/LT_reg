@@ -24,13 +24,13 @@ this.fetchCampers = function(id) {
     console.log('this is fetchgroup data, ', data);
       var deferred = $q.defer();
       $http({
-        url: '/api/fetchCampers/:event/:group',
+        url: '/api/fetchGroup/:event/group',
         method: 'GET',
-        params: data,
+        params: {"event" : data.event, "group": data.group},
       }).then(function(response) {
-        camperInfo = response.data;
-        console.log('this is response data SRVC', response.data)
-        deferred.resolve(response.data)
+        // camperInfo = response.data;
+        // console.log('this is response data SRVC', response.data)
+        deferred.resolve(response)
       })
       return deferred.promise;
     }

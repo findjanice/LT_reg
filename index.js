@@ -18,9 +18,9 @@ app.put('/api/updateCamper/:id', (req, res, id) => {
   console.log('req updateCamper', req.body);
   store
     .updateCamper({
-      name_first: req.body.first_name,
-      name_middle: req.body.middle_name,
-      name_last: req.body.last_name,
+      name_first: req.body.name_first,
+      name_middle: req.body.name_middle,
+      name_last: req.body.name_last,
       roommates: req.body.roommates,
       email: req.body.email,
       gender: req.body.gender,
@@ -40,7 +40,8 @@ app.put('/api/updateCamper/:id', (req, res, id) => {
       mothers_cell_phone: req.body.mothers_cell_phone,
       fathers_work_phone: req.body.fathers_work_phone,
       mothers_work_phone: req.body.mothers_work_phone,
-      emergency_contact: req.body.emergency_contact,
+      emergency_contact_first_name: req.body.emergency_first_name,
+      emergency_contact_last_name: req.body.emergency_last_name,
       emergency_home_phone: req.body.emergency_home_phone,
       relationship_to_camper: req.body.relationship_to_camper
     })
@@ -75,10 +76,11 @@ app.get('/api/fetchCampers/:id', (req,res, id) => {
 })
 
 app.get('/api/fetchGroup/:event/group', (req,res, id) => {
-    console.log('req fetchCampers', req.params);
+    console.log('req fetchCampers', req.query);
   store
   .fetchCampers({
-    zk_event_id: req.params.id
+    zk_event_id: req.query.event,
+    zk_group_id: req.query.group
   })
   .then((response) => {
     console.log('this is res fetchCampers', response);
@@ -90,11 +92,11 @@ app.get('/api/fetchGroup/:event/group', (req,res, id) => {
 })
 
 
-app.delete('/api/removeCamper/:id', (req, res, id)+ {
+app.delete('/api/removeCamper/:id', (req, res, id) => {
    store
    .removeCamper({
      zkp_camper_id: req.params.id
-   }).then((response) = {
+   }).then((response) => {
      return res.send(response);
    })
    .catch((error) => {

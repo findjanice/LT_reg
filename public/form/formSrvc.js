@@ -2,9 +2,11 @@ app.service('formSrvc', function($http, $q, $location){
 
 
      this.updateCamper = function(data) {
+       var id = data.zkp_camper_id;
+       console.log('this is camper id', id);
        var deferred = $q.defer();
        $http({
-         url: '/api/updateCamper/' + data,
+         url: '/api/updateCamper/' + id,
          method: 'PUT',
          data: data
        }).then(function(response) {

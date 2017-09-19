@@ -2,6 +2,8 @@
 
 app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location, dashboardSrvc, loginSrvc) {
 
+  var routeData = $routeParams;
+
   this.state = $location.path();
 
   this.go = function(path) {
@@ -20,15 +22,14 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
     })
   }
 
-  // $scope.fetchGroup = function(params) {
-  //   var param1 = $routeParams.param1;
-  // var param2 = $routeParams.param2;
-  //   dashboardSrvc.fetchGroup(data).then(function(response){
-  //       $scope.camper = response.data;
-  //   })
-  // }
-  //
-  // $scope.fetchGroup();
+  $scope.fetchGroup = function() {
+    dashboardSrvc.fetchGroup(routeData).then(function(response){
+        $scope.camper = response.data;
+        console.log('this is new camper scope', $scope.camper);
+    })
+  }
+
+  $scope.fetchGroup();
 
 
 

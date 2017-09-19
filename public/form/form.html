@@ -101,7 +101,7 @@
             <div class="col-md-4">
               <div class="input-group registration-date-time">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-                <input ng-model="camperData.date_of_birth" class="form-control" name="Date of Birth" id="date_of_birth" type="text">
+                <input ng-model="camperData.date_of_birth" class="form-control" name="Date of Birth" id="date_of_birth" type="text" data-provide="datepicker" data-date-format="mm/dd/yyyy">
               </div>
             </div>
           </div>
@@ -387,8 +387,8 @@
       <div class="form-group">
         <label class="col-md-2 control-label" for="singlebutton"></label>
         <div class="col-md-12">
-          <button ng-click="updatecamperData(camperData)" id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
-          <button ng-click="updatecamperData(camperData)" id="singlebutton" name="singlebutton" class="btn btn-success">Submit</button>
+          <button ng-click="updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
+          <button ng-click="updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-success">Register</button>
           <button ng-click="cancel()" id="singlebutton" name="singlebutton" class="btn btn-danger">Cancel</button>
         </div>
       </div>

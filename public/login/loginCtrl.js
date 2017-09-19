@@ -18,7 +18,7 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location, lo
                   $location.path("/dashboard/" + response[0].zk_event_id);
             }
             else {
-              $location.path("/dashboard/" + response[0].zk_event_id + "/" + response[0].zk_group_id);
+            
             }
 
       }
