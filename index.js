@@ -76,14 +76,14 @@ app.get('/api/fetchCampers/:id', (req,res, id) => {
 })
 
 app.get('/api/fetchGroup/:event/group', (req,res, id) => {
-    console.log('req fetchCampers', req.query);
+    console.log('req fetchGroup', req.query.event);
   store
-  .fetchCampers({
+  .fetchGroup({
     zk_event_id: req.query.event,
     zk_group_id: req.query.group
   })
   .then((response) => {
-    console.log('this is res fetchCampers', response);
+    console.log('this is res fetchGroup', response);
     return res.send(response);
   })
   .catch((error) => {
