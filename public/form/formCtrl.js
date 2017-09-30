@@ -14,6 +14,7 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
   $scope.updateCamper = function(data) {
    formSrvc.updateCamper(data)
      .then(function(data) {
+       console.log('this is data', data);
           $location.path("/dashboard/");
      })
  };

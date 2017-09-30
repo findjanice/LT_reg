@@ -41,9 +41,8 @@ module.exports = {
         emergency_home_phone: req.emergency_home_phone,
         relationship_to_camper: req.relationship_to_camper
       })
-      .returning('zkp_camper_id')
-      .then(function(id) {
-        console.log('this is return id', id);
+      .then(function(res) {
+        console.log('this is return res', res);
       })
   },
   fetchCampers(req, res) {

@@ -7,6 +7,10 @@ app.config(function($routeProvider) {
       templateUrl: 'login/login.html',
       controller: 'loginCtrl'
     })
+    .when('/dashboard', {
+      templateUrl: 'dashboard/dashboard.html',
+      controller: 'dashboardCtrl'
+    })
     .when('/dashboard/:event/:group', {
       templateUrl: 'dashboard/dashboard.html',
       controller: 'dashboardCtrl'

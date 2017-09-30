@@ -83,7 +83,7 @@ app.get('/api/fetchGroup/:event/group', (req,res, id) => {
     zk_group_id: req.query.group
   })
   .then((response) => {
-    console.log('this is res fetchGroup', response);
+    console.log('this is res fetch', response);
     return res.send(response);
   })
   .catch((error) => {
