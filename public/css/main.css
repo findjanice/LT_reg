@@ -70,3 +70,17 @@ body {
   content:"*";
   color:red;
 }
+
+/*input.ng-invalid
+{
+  border:1px solid #f00;
+}
+
+form .ng-invalid
+{
+    border:1px solid #f00;
+}
+
+input.ng-dirty.ng-invalid {
+    border:1px solid #f00;
+}*/

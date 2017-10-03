@@ -25,6 +25,7 @@ app.controller('dashboardCtrl', function($scope, $routeParams, $route, $location
   $scope.fetchGroup = function() {
     dashboardSrvc.fetchGroup(routeData).then(function(response){
         $scope.camper = response.data;
+        $scope.event_name = response.data
         console.log('this is new camper scope', $scope.camper);
     })
   }

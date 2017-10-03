@@ -19,7 +19,7 @@
   </div>
 </nav>
 <div class="container">
-  <form data-toggle="validator" class="form-horizontal" ng-model="camperData" role="form">
+  <form data-toggle="validator" class="form-horizontal" ng-model="camperData" role="form" name="camperForm" novalidate>
     <fieldset>
 
       <!-- Form Name -->
@@ -28,7 +28,7 @@
         <div class="panel-heading">Camper's Personal Information</div>
         <div class="panel-body">
 
-          <!-- <div class="form-group required">
+          <div class="form-group required">
             <label class="col-md-4 control-label" for="radios">First LT Camp?</label>
             <div class="col-md-4">
               <label class="radio-inline" for="radios-0">
@@ -40,7 +40,7 @@
       No
     </label>
             </div>
-          </div> -->
+          </div>
           <!-- <div class="form-group row">
             <div class="col-md-4">
               <div class="form-check">
@@ -55,7 +55,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.name_first" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.name_first" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -74,7 +74,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.name_last" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.name_last" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -84,7 +84,7 @@
             <label class="col-md-4 control-label" for="radios">Gender</label>
             <div class="col-md-4">
               <label class="radio-inline" for="radios-0">
-      <input ng-model="camperData.gender" type="radio" name="radios" id="radios-0" value="Male" checked="checked">
+      <input ng-model="camperData.gender" type="radio" name="radios" id="radios-0" value="Male" checked="checked" ng-required="true" >
       Male
     </label>
               <label class="radio-inline" for="radios-1">
@@ -101,7 +101,7 @@
             <div class="col-md-4">
               <div class="input-group registration-date-time">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-                <input ng-model="camperData.date_of_birth" class="form-control" name="Date of Birth" id="date_of_birth" type="text" data-provide="datepicker" data-date-format="mm/dd/yyyy">
+                <input ng-model="camperData.date_of_birth" class="form-control" name="Date of Birth" id="date_of_birth" type="text" data-provide="datepicker" data-date-format="mm/dd/yyyy" ng-required="true">
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Home Address</label>
             <div class="col-md-4">
-              <input ng-model="camperData.street" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.street" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required ng-required="true">
 
             </div>
           </div>
@@ -130,7 +130,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">City</label>
             <div class="col-md-4">
-              <input ng-model="camperData.city" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.city" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -139,7 +139,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">State</label>
             <div class="col-md-4">
-              <input ng-model="camperData.state" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.state" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -148,7 +148,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Postal Code</label>
             <div class="col-md-4">
-              <input ng-model="camperData.postal_code" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.postal_code" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -157,7 +157,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">E-mail</label>
             <div class="col-md-4">
-              <input ng-model="camperData.email" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.email" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -166,7 +166,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Home Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -285,7 +285,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.emergency_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -295,7 +295,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.emergency_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -304,7 +304,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Work Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_work_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.emergency_work_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -312,7 +312,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Cell Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.emergency_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -320,7 +320,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Relationship to Camper</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_relationship" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.emergency_relationship" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -337,7 +337,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.physician_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.physician_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -347,7 +347,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.physician_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.physician_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -356,7 +356,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Work Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.physician_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required>
+              <input ng-model="camperData.physician_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-required="true" required>
 
             </div>
           </div>
@@ -387,8 +387,8 @@
       <div class="form-group">
         <label class="col-md-2 control-label" for="singlebutton"></label>
         <div class="col-md-12">
-          <button ng-click="updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
-          <button ng-click="updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-success">Register</button>
+          <button ng-click="camperForm.$valid && updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-primary">Save</button>
+          <button ng-click="camperForm.$valid && updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-success">Register</button>
           <button ng-click="cancel()" id="singlebutton" name="singlebutton" class="btn btn-danger">Cancel</button>
         </div>
       </div>
