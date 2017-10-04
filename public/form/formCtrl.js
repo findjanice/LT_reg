@@ -12,10 +12,12 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
   }
 
   $scope.updateCamper = function(data) {
+    var params1 = data.zk_event_id;
+    var params2 = data.zk_group_id;
    formSrvc.updateCamper(data)
      .then(function(data) {
        console.log('this is data', data);
-          $location.path("/dashboard/");
+          $location.path("/dashboard/" + params1 + "/" + params2);
      })
  };
 

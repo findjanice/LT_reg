@@ -84,3 +84,24 @@ form .ng-invalid
 input.ng-dirty.ng-invalid {
     border:1px solid #f00;
 }*/
+
+.tooltip.top.has-error {
+  margin-top: -10px;
+}
+
+.tooltip.top.has-error {
+  margin-left: 3px;
+}
+
+.tooltip.top.has-error .tooltip-arrow {
+  border-top-color: #a94442;
+}
+
+.tooltip.right.has-error .tooltip-arrow {
+  border-right-color: #a94442;
+}
+
+.tooltip.has-error .tooltip-inner {
+  background: #a94442;
+  max-width: 100%;
+}

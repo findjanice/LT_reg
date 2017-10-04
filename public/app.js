@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'bootstrap.angular.validation', 'ui.bootstrap']);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -31,3 +31,8 @@ app.config(function($routeProvider) {
 app.config(['$locationProvider', function($locationProvider) {
   $locationProvider.hashPrefix('');
 }]);
+
+app.config(['bsValidationConfigProvider', function(bsValidationConfigProvider) {
+  bsValidationConfigProvider.global.setValidateFieldsOn('submit');
+  bsValidationConfigProvider.global.errorMessagePrefix = '<span class="glyphicon glyphicon-warning-sign"></span> &nbsp;';
+}])
