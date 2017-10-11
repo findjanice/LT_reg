@@ -47,6 +47,20 @@ module.exports = {
         console.log('this is return res', res);
       })
   },
+  registerCamper(req, res) {
+    console.log('this is req in store.js', req);
+    return knex('WB_d_camper')
+      .where({
+        zkp_camper_id: req.zkp_camper_id
+      })
+      .update({
+        registration_date: req.registration_date,
+        status: req.status
+      })
+      .then(function(res) {
+        console.log('this is return res', res);
+      })
+  },
   fetchCampers(req, res) {
     console.log('this is req in store.js fetchCampers', req);
     return knex('WB_d_camper').where({
@@ -99,18 +113,18 @@ module.exports = {
       .catch(function(error) {
         console.error(error);
       })
+  },
+  removeCamper(req, res) {
+    return knex('WB_d_camper').where ({
+      zkp_camper_id: req.zkp_camper_id
+    })
+    .del()
+    .then(function(res){
+      return (res);
+    })
+    .catch(TypeError, function(err){
+      console.error('fail', err)
+    })
+
   }
-  // removeCamper(req, res) {
-  //   return knex('WB_d_camper').where ({
-  //     zkp_camper_id: req.zkp_camper_id
-  //   })
-  //   .del()
-  //   .then(function(res){
-  //     return (res);
-  //   })
-  //   .catch(TypeError, function(err){
-  //     console.error('fail', err)
-  //   })
-  //
-  // }
 }

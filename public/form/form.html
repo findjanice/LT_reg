@@ -32,11 +32,11 @@
             <label class="col-md-4 control-label" for="radios">First LT Camp?</label>
             <div class="col-md-4">
               <label class="radio-inline" for="radios-0">
-      <input ng-model="camperData.first_time_flag" type="radio" name="radios" id="radios-0" value="1" checked="checked" />
+      <input ng-model="camperData.first_time_flag" type="radio"  value="1" ng-disabled="camperData.status == 'Submitted'" />
       Yes
     </label>
               <label class="radio-inline" for="radios-1">
-      <input ng-model="camperData.first_time_flag"  type="radio" name="radios" id="radios-1" value="0" checked="checked">
+      <input ng-model="camperData.first_time_flag"  type="radio" name="radios" value="0" ng-disabled="camperData.status == 'Submitted'">
       No
     </label>
             </div>
@@ -55,7 +55,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.name_first" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.name_first" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'"/>
 
             </div>
           </div>
@@ -65,7 +65,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Middle Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.name_middle" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.name_middle" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -74,7 +74,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.name_last" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required=""  />
+              <input ng-model="camperData.name_last" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -84,11 +84,11 @@
             <label class="col-md-4 control-label" for="radios">Gender</label>
             <div class="col-md-4">
               <label class="radio-inline" for="radios-3">
-      <input ng-model="camperData.gender" type="radio" name="radios" id="radios-0" value="Male" checked="checked"  />
+      <input ng-model="camperData.gender" type="radio"  value="Male" ng-disabled="camperData.status == 'Submitted'"   />
       Male
     </label>
               <label class="radio-inline" for="radios-4">
-      <input ng-model="camperData.gender" type="radio" name="radios" id="radios-1" value="Female" checked="checked" >
+      <input ng-model="camperData.gender" type="radio"  value="Female"  ng-disabled="camperData.status == 'Submitted'" />
       Female
     </label>
             </div>
@@ -101,7 +101,7 @@
             <div class="col-md-4">
               <div class="input-group registration-date-time">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-                <input ng-model="camperData.date_of_birth" class="form-control" name="Date of Birth" id="date_of_birth" type="text" data-provide="datepicker" data-date-format="mm/dd/yyyy" required="" />
+                <input ng-model="camperData.date_of_birth" class="form-control" name="Date of Birth" id="date_of_birth" type="text" data-provide="datepicker" data-date-format="mm/dd/yyyy" required="" ng-disabled="camperData.status == 'Submitted'"/>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Home Address</label>
             <div class="col-md-4">
-              <input ng-model="camperData.street" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.street" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -121,7 +121,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Suite/Unit/Apartment No.</label>
             <div class="col-md-4">
-              <input ng-model="camperData.street_2" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.street_2" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'"/>
 
             </div>
           </div>
@@ -130,7 +130,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">City</label>
             <div class="col-md-4">
-              <input ng-model="camperData.city" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.city" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -139,7 +139,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">State</label>
             <div class="col-md-4">
-              <input ng-model="camperData.state" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required=""  />
+              <input ng-model="camperData.state" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -148,7 +148,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Postal Code</label>
             <div class="col-md-4">
-              <input ng-model="camperData.postal_code" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.postal_code" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -157,7 +157,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">E-mail</label>
             <div class="col-md-4">
-              <input ng-model="camperData.email" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.email" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -166,7 +166,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Home Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -186,7 +186,7 @@
             <div class="col-md-4">
               <div class="form-check">
                 <label class="form-check-label">
-            <input  ng-model="camperData.guardian_flag" class="form-check-input" type="checkbox" /> Guardian
+            <input  ng-model="camperData.guardian_flag" class="form-check-input" type="checkbox" ng-readonly="camperData.status == 'Submitted'" /> Guardian
           </label>
               </div>
             </div>
@@ -195,7 +195,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.father_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" pattern="^[a-zA-Z ]{2,30}$"/>
+              <input ng-model="camperData.father_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" pattern="^[a-zA-Z ]{2,30}$" ng-readonly="camperData.status == 'Submitted'"/>
 
             </div>
           </div>
@@ -205,7 +205,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.father_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.father_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -214,7 +214,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Work Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.fathers_work_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.fathers_work_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -223,7 +223,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Cell Phone</label>
             <div class="col-md-4">
-              <input ng-model="fathers_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="fathers_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -241,7 +241,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.mothers_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.mothers_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -251,7 +251,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.mothers_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.mothers_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'"/>
 
             </div>
           </div>
@@ -260,7 +260,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Work Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.mothers_work_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.mothers_work_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -268,7 +268,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Cell Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.mothers_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.mothers_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -285,7 +285,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.emergency_contact_first_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -295,16 +295,16 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.emergency_contact_last_name" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
 
           <!-- Text input-->
           <div class="form-group required">
-            <label class="col-md-4 control-label" for="textinput">Work Phone</label>
+            <label class="col-md-4 control-label" for="textinput">Home Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_work_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.emergency_home_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -312,7 +312,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Cell Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.emergency_cell_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -320,7 +320,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Relationship to Camper</label>
             <div class="col-md-4">
-              <input ng-model="camperData.emergency_relationship" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.emergency_relationship" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -337,7 +337,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">First Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.physician_first_name" id="textinput" name="phys_name" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.physician_first_name" id="textinput" name="phys_name" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
             </div>
           </div>
 
@@ -346,7 +346,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Last Name</label>
             <div class="col-md-4">
-              <input ng-model="camperData.physician_last_name" id="textinput" name="phys_last_name" type="text" placeholder="" class="form-control input-md" required="required" />
+              <input ng-model="camperData.physician_last_name" id="textinput" name="phys_last_name" type="text" placeholder="" class="form-control input-md" required="required" ng-readonly="camperData.status == 'Submitted'" />
             </div>
           </div>
 
@@ -354,7 +354,7 @@
           <div class="form-group required">
             <label class="col-md-4 control-label" for="textinput">Work Phone</label>
             <div class="col-md-4">
-              <input ng-model="camperData.physician_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" />
+              <input ng-model="camperData.physician_phone" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" required="" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -372,7 +372,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Roommates</label>
             <div class="col-md-4">
-              <input ng-model="camperData.roommates" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" />
+              <input ng-model="camperData.roommates" id="textinput" name="textinput" type="text" placeholder="" class="form-control input-md" ng-readonly="camperData.status == 'Submitted'" />
 
             </div>
           </div>
@@ -385,9 +385,9 @@
       <div class="form-group">
         <label class="col-md-2 control-label" for="singlebutton"></label>
         <div class="col-md-12">
-          <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-default" value="Save" />
-          <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary" value="Save and Submit" />
-          <input type="button" ng-click="cancel()" id="singlebutton" name="singlebutton" class="btn btn-danger" value="Cancel" />
+          <input type="button" ng-click="updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-default" value="Save" ng-hide="camperData.status == 'Submitted'"/>
+          <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary" value="Save and Submit" ng-hide="camperData.status == 'Submitted'" />
+          <input type="button" ng-click="cancel(camperData)" id="singlebutton" name="singlebutton" class="btn btn-danger" value="Cancel" />
         </div>
       </div>
 

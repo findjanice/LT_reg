@@ -7,13 +7,14 @@ var params = {};
 this.login = function(data){
    var deferred = $q.defer();
    $http({
-     url:'/initiateLogin',
+     url:'/login',
      method: 'POST',
      data: data
    }).then(function(response){
       campers = response.data;
-      params.zk_event_id = campers[0].zk_event_id;
-      params.zk_group_id = campers[0].zk_group_id;
+      console.log('this is campers', campers);
+      params.zk_event_id = campers.zk_event_id;
+      params.zk_group_id = campers.zk_group_id;
      deferred.resolve(response.data)
    })
    return deferred.promise;

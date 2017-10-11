@@ -1,20 +1,152 @@
 //dependecies
 const express = require ('express');
 const bodyParser = require ('body-parser');
-const promise = require("bluebird");
+const promise = require('bluebird');
+const _ = require('lodash');
+
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const cookieParser = require('cookie-parser')
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 
 //file dependecies
 const store = require('./store');
 
+var User = require('./model');
 
-//express
+//get instance of router
+const router = express.Router();
+
+//express middleware
 const app = express();
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({secret: 'our secret string'}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.use((req, res, done) => {
+  console.log('this is req.sessions', req.session);
+  if (req.session && req.session.passport) {
+    console.log('user is logged in: ', req.session.passport);
+  }
+  else {
+    console.log('user not logged in');
+  }
+  done();
+});
+
+
+const isAuthenticated = (req, res, done) => {
+  console.log('this is authenticated req', req);
+  if (req.isAuthenticated()) {
+    return done();
+  }
+  res.send('user not logged in');
+};
+
+//password salt
+
+const salt = bcrypt.genSaltSync(10);
+
+//Salt and has password
+// const passwordToSave = bcrypt.hashSync(passwordFromUser, salt);
+
+//web token authetication
+// var jwtOptions = {};
+// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+// jwtOptions.secretOrKey = 'alh3myG';
+//
+// var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next){
+//   console.log('payload received', jwt_payload);
+//
+// })
 
 //endpoints
 
-app.put('/api/updateCamper/:id', (req, res, id) => {
+passport.use(new LocalStrategy(function(username, password, done) {
+  console.log('password username', username, password);
+   new User({group_user: username})
+   .fetch().
+   then(function(data) {
+      var user = data;
+      console.log('this is data', data);
+      if(user === null) {
+         return done(null, false, {message: 'Invalid username or password'});
+      } else {
+         user = data.toJSON();
+         console.log('this is password', user.group_password);
+         if(bcrypt.compareSync(password, user.group_password)) {
+            return done(null, false, {message: 'Invalid username or password'});
+         } else {
+            return done(null, user);
+         }
+      }
+   });
+}));
+
+passport.serializeUser(function(user, done) {
+  console.log('this is user serializeUser', user.zk_event_id);
+  done(null, user.zk_event_id);
+});
+
+passport.deserializeUser(function(user, done) {
+     new User({zk_event_id: user}).fetch().then(function(usr) {
+      done(null, usr);
+   });
+});
+
+
+
+app.post('/login',  function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      console.log('user not found');
+      return res.send('authentication failed');
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      console.log(req.session);
+      return res.status(200).json(user);
+    });
+  })(req, res, next);
+});
+
+app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+
+
+// +++Original Login No Authentication+++
+
+// app.post('/initiateLogin', (req, res) => {
+//    store
+//    .loginAuth({
+//      username: req.body.username,
+//      password: req.body.password
+//    })
+//    .then((response, err) => {
+//      return res.send(response);
+//    })
+// })
+
+
+
+app.put('/api/updateCamper/:id', isAuthenticated, (req, res, id) => {
   console.log('req updateCamper', req.body);
   store
     .updateCamper({
@@ -51,19 +183,20 @@ app.put('/api/updateCamper/:id', (req, res, id) => {
     .then(() => res.sendStatus(200))
 })
 
-app.post('/initiateLogin', (req, res) => {
-   store
-   .loginAuth({
-     username: req.body.username,
-     password: req.body.password
-   })
-   .then((response, err) => {
-     return res.send(response);
-   })
+app.put('/api/register/:id', isAuthenticated, (req, res, id) => {
+  store
+    .registerCamper({
+      status: req.body.status,
+      registration_date: req.body.registration_date,
+      zkp_camper_id: req.params.id,
+    })
+    .then(() => res.sendStatus(200))
 })
 
 
-app.get('/api/fetchCampers/:id', (req,res, id) => {
+
+
+app.get('/api/fetchCampers/:id', isAuthenticated, (req,res, id) => {
     console.log('req fetchCampers', req.params);
   store
   .fetchCampers({
@@ -78,8 +211,8 @@ app.get('/api/fetchCampers/:id', (req,res, id) => {
   })
 })
 
-app.get('/api/fetchGroup/:event/group', (req,res, id) => {
-    console.log('req fetchGroup', req.query.event);
+app.get('/api/fetchGroup/:event/group', isAuthenticated, (req,res, id) => {
+
   store
   .fetchGroup({
     zk_event_id: req.query.event,
@@ -90,7 +223,7 @@ app.get('/api/fetchGroup/:event/group', (req,res, id) => {
     return res.send(response);
   })
   .catch((error) => {
-    console.log('this is error, fetchCampers', error)
+    res.sendStatus(500);
   })
 })
 

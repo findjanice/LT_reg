@@ -6,7 +6,7 @@
         <img src="logo.png" class="img-responsive" alt="Lone Tree Inc">
      </div>
       <div class="col-md-6 text-right" style="position:absolute;bottom:0;right:0;">
-        <small><a href="mailto:support@vintagedesigninc.com?Subject=HBI%20Tech%20Support" target="_top">Tech Support</a> | <a href="logout.php" class="text-right">Log Out</a></small>
+        <small><a href="mailto:support@vintagedesigninc.com?Subject=HBI%20Tech%20Support" target="_top">Tech Support</a> | <a href class="text-right" ng-click="logout()">Log Out</a></small>
       </div>
     </div>
   </div>
@@ -46,13 +46,16 @@
             <td>{{$index + 1}}</td>
             <td>{{campers.name_first}}</td>
             <td>{{campers.name_last}}</td>
-            <td><button type="submit" name="submit" class="btn btn-success" role="button">Submit</button></td>
+            <td><button type="submit" name="submit" ng-click="register(campers)" class="btn btn-success" role="button" ng-hide="campers.status == 'Submitted' "  ng-disabled="!(!!campers.name_first && !!campers.name_last && !!campers.gender && !!campers.city && !!campers.date_of_birth && !!campers.email && !!campers.emergency_cell_phone && !!campers.emergency_contact_first_name && !!campers.emergency_contact_last_name && !!campers.emergency_home_phone && !!campers.relationship_to_camper && !!campers.first_time_flag )">Submit</button> <p ng-show ="campers.status == 'Submitted' " > {{campers.registration_date | date: 'medium'}}
+
+            </p>
+            </td>
             <td>{{campers.status}}</td>
             <td>
-              <button type="submit" name="view" class="btn btn-default" role="button" ng-show="view"><span class="glyphicon glyphicon-eye-open"></span></button>
-              <button ng-click="fetchCampers(campers.zkp_camper_id)" type="submit" name="edit" class="btn btn-default" role="button"><span class="glyphicon glyphicon-edit"></span></button>
-          <button type="submit" name="delete" class="btn btn-danger" role="button" style="display: none;"><span class="glyphicon glyphicon-trash"></span></button>
-          <button type="button" name="deleteModalLauncher" id="deleteModalLauncher" class="btn btn-danger" role="button" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash"></span></button>
+              <button ng-click="fetchCampers(campers.zkp_camper_id)"  type="submit" name="view" class="btn btn-default" role="button" ng-show="campers.status == 'Submitted' "><span class="glyphicon glyphicon-eye-open"></span></button>
+              <button ng-click="fetchCampers(campers.zkp_camper_id)" type="submit" name="edit" class="btn btn-default" role="button" ng-hide="campers.status == 'Submitted' " ><span class="glyphicon glyphicon-edit"></span></button>
+          <button type="submit" name="delete" class="btn btn-danger" role="button" ng-click="open()"><span class="glyphicon glyphicon-trash"></span></button>
+  <button type="button" name="deleteModalLauncher" id="deleteModalLauncher" class="btn btn-danger" role="button" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
 
             </td>
           </tr>
@@ -62,4 +65,23 @@
   </div>
 
 </div>
+</div>
+
+!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete Camper</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this Camper from the Group? This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" id="deleteFromModal" name="deleteFromModal" class="btn btn-danger" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>

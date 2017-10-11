@@ -31,8 +31,15 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
 
   $scope.getCamperInfo();
 
-  $scope.cancel = function() {
-      $location.path("/dashboard");
+  $scope.cancel = function(data) {
+    var params1 = data.zk_event_id;
+    var params2 = data.zk_group_id;
+      $location.path("/dashboard/" + params1 + "/" + params2);
+  }
+
+  $scope.logout = function () {
+    $window.localStorage.clear();
+    $location.path('/');
   }
 
 
