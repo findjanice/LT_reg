@@ -178,7 +178,8 @@ app.put('/api/updateCamper/:id', isAuthenticated, (req, res, id) => {
       emergency_contact_first_name: req.body.emergency_first_name,
       emergency_contact_last_name: req.body.emergency_last_name,
       emergency_home_phone: req.body.emergency_home_phone,
-      relationship_to_camper: req.body.relationship_to_camper
+      relationship_to_camper: req.body.relationship_to_camper,
+      status: req.body.status
     })
     .then(() => res.sendStatus(200))
 })
@@ -233,7 +234,7 @@ app.delete('/api/removeCamper/:id', (req, res, id) => {
    .removeCamper({
      zkp_camper_id: req.params.id
    }).then((response) => {
-     return res.send(response);
+     return res.sendStatus(200);
    })
    .catch((error) => {
      console.log('this is error', error)

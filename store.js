@@ -41,7 +41,8 @@ module.exports = {
         emergency_contact_first_name: req.emergency_contact_first_name,
         emergency_contact_last_name: req.emergency_contact_last_name,
         emergency_home_phone: req.emergency_home_phone,
-        relationship_to_camper: req.relationship_to_camper
+        relationship_to_camper: req.relationship_to_camper,
+        status: req.status
       })
       .then(function(res) {
         console.log('this is return res', res);
@@ -90,37 +91,14 @@ module.exports = {
       })
 
   },
-  loginAuth(req, res) {
-    console.log('autheticating user, loginAuth', req.username);
-    const pwd = req.password;
-    return knex('WB_d_camper')
-      .where({
-        group_user: req.username
-      })
-      .select()
-      .then(function(res) {
-        if (!res || !res[0]) { // not found!
-          return ('fail');
-        }
-        var pass = res[0].group_password;
-        if (pwd === pass) {
-          return (res);
-          //  return('success');
-        } else {
-          return ('fail');
-        }
-      })
-      .catch(function(error) {
-        console.error(error);
-      })
-  },
+
   removeCamper(req, res) {
     return knex('WB_d_camper').where ({
       zkp_camper_id: req.zkp_camper_id
     })
     .del()
     .then(function(res){
-      return (res);
+      console.log(res);
     })
     .catch(TypeError, function(err){
       console.error('fail', err)

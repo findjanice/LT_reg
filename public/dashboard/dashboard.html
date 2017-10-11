@@ -16,10 +16,12 @@
 
   <div class="row">
 
-    <div class="col-8">
-      <h6><span class="glyphicon glyphicon-star"></span> Event: Smallville Convention </h6> </div>
+    <div class="col-2">
+        <h6><span class="glyphicon glyphicon-user"></span> Group: {{group}}</h6></div>
+          <div class="col-4">
+      <h6><span class="glyphicon glyphicon-star"></span> Event: {{event_name}} </h6> </div>
      <div class="col-4">
-      <h6><span class="	glyphicon glyphicon-calendar"></span> Date: December 16, 2017 - December 18,2017</h6>
+      <h6><span class="	glyphicon glyphicon-calendar"></span> Date: {{start_date}} - {{end_data}}</h6>
      </div>
 
         <!-- Camp Info -->
@@ -54,8 +56,8 @@
             <td>
               <button ng-click="fetchCampers(campers.zkp_camper_id)"  type="submit" name="view" class="btn btn-default" role="button" ng-show="campers.status == 'Submitted' "><span class="glyphicon glyphicon-eye-open"></span></button>
               <button ng-click="fetchCampers(campers.zkp_camper_id)" type="submit" name="edit" class="btn btn-default" role="button" ng-hide="campers.status == 'Submitted' " ><span class="glyphicon glyphicon-edit"></span></button>
-          <button type="submit" name="delete" class="btn btn-danger" role="button" ng-click="open()"><span class="glyphicon glyphicon-trash"></span></button>
-  <button type="button" name="deleteModalLauncher" id="deleteModalLauncher" class="btn btn-danger" role="button" data-toggle="modal" data-target="#deleteModal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+
+  <button type="button" ng-click="setValue(campers.zkp_camper_id)" name="deleteModalLauncher" id="deleteModalLauncher" class="btn btn-danger" role="button" data-toggle="modal" data-target="#deleteModal" ng-hide="campers.status == 'Submitted' " ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
 
             </td>
           </tr>
@@ -67,7 +69,6 @@
 </div>
 </div>
 
-!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -80,7 +81,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" id="deleteFromModal" name="deleteFromModal" class="btn btn-danger" data-dismiss="modal">Delete</button>
+        <button type="button" ng-click="delete()" id="deleteFromModal" name="deleteFromModal" class="btn btn-danger" data-dismiss="modal">Delete</button>
       </div>
     </div>
   </div>

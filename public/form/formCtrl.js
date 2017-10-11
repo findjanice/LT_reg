@@ -12,6 +12,7 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
   }
 
   $scope.updateCamper = function(data) {
+    data.status = "Pending"
     var params1 = data.zk_event_id;
     var params2 = data.zk_group_id;
    formSrvc.updateCamper(data)
@@ -20,6 +21,17 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
           $location.path("/dashboard/" + params1 + "/" + params2);
      })
  };
+
+ $scope.submitCamper = function(data) {
+   data.status = "Submitted"
+   var params1 = data.zk_event_id;
+   var params2 = data.zk_group_id;
+  formSrvc.updateCamper(data)
+    .then(function(data) {
+      console.log('this is data', data);
+         $location.path("/dashboard/" + params1 + "/" + params2);
+    })
+};
 
   $scope.getCamperInfo = function() {
     formSrvc.getCamperInfo($scope.camperId).then(function(response) {
@@ -38,8 +50,9 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
   }
 
   $scope.logout = function () {
-    $window.localStorage.clear();
-    $location.path('/');
+    dashboardSrvc.logout().then(function(response){
+      $location.path('/');
+    })
   }
 
 

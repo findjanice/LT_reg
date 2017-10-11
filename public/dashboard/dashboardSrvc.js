@@ -67,9 +67,8 @@ this.register = function(data) {
 }
 
 this.removeCamper = function(data) {
-  var id = data.zkp_camper_id;
   var deferred = $q.defer();
-  $http.delete('/api/removeCamper/ ' + id)
+  $http.delete('/api/removeCamper/ ' + data)
    .then(function(response) {
     deferred.resolve(response.data)
   })

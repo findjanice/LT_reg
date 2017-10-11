@@ -36,14 +36,26 @@ app.controller('dashboardCtrl', function($scope, $window, $uibModal, $log, $rout
       }
       else {
         $scope.camper = response.data;
-        $scope.event_name = response.data
-        console.log('this is new camper scope', $scope.camper);
+        $scope.event_name = response.data[0].event_name;
+        $scope.group= response.data[0].group_name;
+        $scope.start_date = response.data[0].event_start_date;
+        $scope.end_data = response.data[0].event_end_data;
       }
-
     })
   }
 
+  $scope.setValue = function(data) {
+    $scope.camper_id = data;
+  }
+
   $scope.fetchGroup();
+
+  $scope.delete = function(){
+    dashboardSrvc.removeCamper($scope.camper_id).then(function(response){
+      console.log('deleted');
+      $scope.fetchGroup();
+    })
+  }
 
   $scope.logout = function () {
     dashboardSrvc.logout().then(function(response){
