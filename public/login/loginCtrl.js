@@ -45,6 +45,7 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location, lo
          console.log("this is find", findAvailableCamper);
          var id = findAvailableCamper.zkp_camper_id;
         $location.path("/onSiteForm/" + id);
+
     })
   }
 
