@@ -29,8 +29,9 @@ module.exports = {
         father_name_first: req.father_name_first,
         father_name_last: req.father_name_last,
         mother_name_first: req.mother_name_first,
-        mother_name_first: req.mother_name_last,
+        mother_name_last: req.mother_name_last,
         street: req.street,
+        street_two: req.street_two,
         city: req.city,
         state: req.state,
         postal_code: req.postal_code,
@@ -41,8 +42,11 @@ module.exports = {
         emergency_contact_first_name: req.emergency_contact_first_name,
         emergency_contact_last_name: req.emergency_contact_last_name,
         emergency_home_phone: req.emergency_home_phone,
+        emergency_cell_phone: req.emergency_cell_phone,
         relationship_to_camper: req.relationship_to_camper,
-        status: req.status
+        status: req.status,
+        registration_date: req.registration_date,
+        guardian_flag: req.guardian_flag
       })
       .then(function(res) {
         console.log('this is return res', res);

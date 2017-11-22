@@ -13,25 +13,35 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
 
   $scope.updateCamper = function(data) {
     data.status = "Pending"
+    console.log('this is udpate camper data', data);
     var params1 = data.zk_event_id;
     var params2 = data.zk_group_id;
    formSrvc.updateCamper(data)
      .then(function(data) {
        console.log('this is data', data);
-          $location.path("/dashboard/" + params1 + "/" + params2);
+       $scope.updated = "true";
      })
  };
 
  $scope.submitCamper = function(data) {
-   data.status = "Submitted"
+       console.log('this is submitted camper data', data);
    var params1 = data.zk_event_id;
    var params2 = data.zk_group_id;
-  formSrvc.updateCamper(data)
+   console.log('this is submit Camperdata', data);
+  formSrvc.submitCamper(data)
     .then(function(data) {
-      console.log('this is data', data);
-         $location.path("/dashboard/" + params1 + "/" + params2);
+      if (data.zk_camper_id !== "") {
+        $scope.saved = "true";
+      }
+      else {
+        console.log('this is data', data);
+           $location.path("/dashboard/" + params1 + "/" + params2);
+      }
+
     })
 };
+
+
 
   $scope.getCamperInfo = function() {
     formSrvc.getCamperInfo($scope.camperId).then(function(response) {
@@ -44,9 +54,15 @@ app.controller('formCtrl', function($scope, $routeParams, $route, $location, for
   $scope.getCamperInfo();
 
   $scope.cancel = function(data) {
-    var params1 = data.zk_event_id;
-    var params2 = data.zk_group_id;
-      $location.path("/dashboard/" + params1 + "/" + params2);
+    if (data.zk_camper_id !== "") {
+      $scope.cancel = "true";
+    }
+    else {
+      var params1 = data.zk_event_id;
+      var params2 = data.zk_group_id;
+        $location.path("/dashboard/" + params1 + "/" + params2);
+    }
+
   }
 
   $scope.logout = function () {

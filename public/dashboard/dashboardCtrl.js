@@ -39,7 +39,7 @@ app.controller('dashboardCtrl', function($scope, $window, $uibModal, $log, $rout
         $scope.event_name = response.data[0].event_name;
         $scope.group= response.data[0].group_name;
         $scope.start_date = response.data[0].event_start_date;
-        $scope.end_data = response.data[0].event_end_data;
+        $scope.end_data = response.data[0].event_end_date;
       }
     })
   }

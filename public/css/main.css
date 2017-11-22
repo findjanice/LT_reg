@@ -71,6 +71,11 @@ body {
   color:red;
 }
 
+.show-condition:after {
+  content:"*";
+  color:red;
+}
+
 /*input.ng-invalid
 {
   border:1px solid #f00;
@@ -104,4 +109,8 @@ input.ng-dirty.ng-invalid {
 .tooltip.has-error .tooltip-inner {
   background: #a94442;
   max-width: 100%;
+}
+
+.onsiteEventInfo {
+  margin-bottom: 20px;
 }

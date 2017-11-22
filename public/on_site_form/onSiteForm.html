@@ -19,6 +19,17 @@
   </div>
 </nav>
 <div class="container">
+  <div class="row onsiteEventInfo">
+          <div class="col6 col-md-4">
+      <span class="glyphicon glyphicon-star"></span> Event: {{event_name}}  </div>
+     <div class="col6 col-md-4">
+      <span class="	glyphicon glyphicon-calendar"></span> Date: {{start_date}} - {{end_data}}
+     </div>
+
+        <!-- Camp Info -->
+
+    </div>
+
   <form data-toggle="validator" class="form-horizontal" ng-model="camperData" role="form" name="camperForm" ng-submit="submitCamper(camperData)" novalidate>
     <fieldset>
 
@@ -381,15 +392,11 @@
       <div class="alert alert-success" role="alert" ng-show="updated">
         <strong>Success!</strong> Your entry is saved.
     </div>
-    <div class="alert alert-success" role="alert" ng-show="saved">
-      <strong>Success!</strong> Your entry is submitted.
-  </div>
 
       <!-- Button -->
       <div class="form-group">
         <label class="col-md-2 control-label" for="singlebutton"></label>
         <div class="col-md-12">
-          <input type="button" ng-click="updateCamper(camperData)" id="singlebutton" name="singlebutton" class="btn btn-default" value="Save" ng-hide="camperData.status == 'Submitted'" />
           <input type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary" value="Save and Submit" ng-hide="camperData.status == 'Submitted'" />
           <input type="button" ng-click="cancel(camperData)" id="singlebutton" name="singlebutton" class="btn btn-danger" value="Cancel" />
         </div>
