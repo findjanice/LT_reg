@@ -292,6 +292,6 @@ app.delete('/api/removeCamper/:id', (req, res, id) => {
 //   console.log('Server running on http://localhost:7555');
 // })
 
-app.listen(3000, '0.0.0.0', function() {
-    console.log('Listening to port:  ' + 3000);
+app.listen(8000, '0.0.0.0', function() {
+    console.log('Listening to port:  ' + 8000);
 });
