@@ -54,6 +54,7 @@ app.controller('dashboardCtrl', function($scope, $window, $uibModal, $log, $rout
     dashboardSrvc.removeCamper($scope.camper_id).then(function(response){
       console.log('deleted');
       $scope.fetchGroup();
+
     })
   }
 
