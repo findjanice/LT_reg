@@ -30,7 +30,6 @@ app.controller('dashboardCtrl', function($scope, $window, $uibModal, $log, $rout
 
   $scope.fetchGroup = function() {
     dashboardSrvc.fetchGroup(routeData).then(function(response){
-      console.log('this is response', response);
       if (response.data == 'user not logged in') {
             $location.path('/');
       }
@@ -52,7 +51,6 @@ app.controller('dashboardCtrl', function($scope, $window, $uibModal, $log, $rout
 
   $scope.delete = function(){
     dashboardSrvc.removeCamper($scope.camper_id).then(function(response){
-      console.log('deleted');
       $scope.fetchGroup();
 
     })

@@ -15,7 +15,7 @@ app.controller('loginCtrl', function($scope, $routeParams, $route, $location, lo
     console.log('this is response', user);
     loginSrvc.login(user).then(function(response) {
       console.log('this is response', response);
-      if (response.data == "authentication failed") {
+      if (response == "authentication failed") {
         $scope.error = true;
         $scope.user = {};
          $location.path("/");

@@ -1,4 +1,4 @@
-//dependecies
+//dependencies
 const express = require ('express');
 const bodyParser = require ('body-parser');
 const promise = require('bluebird');
@@ -11,8 +11,10 @@ const cookieParser = require('cookie-parser')
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+const helmet = require('helmet');
 
-//file dependecies
+
+//file dependencies
 const store = require('./store');
 
 var User = require('./model');
@@ -20,18 +22,28 @@ var User = require('./model');
 //get instance of router
 const router = express.Router();
 
+const cors = require('cors');
+
 //express middleware
 const app = express();
 app.use(express.static('public'));
+// app.use(express.static(__dirname + "/public/"));
+// app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({secret: 'our secret string'}));
+app.use(session({
+  secret: 'our secret string',
+  saveUninitialized: false,
+  resave: false
+  }));
+
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use(helmet.noSniff());
 
 app.use((req, res, done) => {
   console.log('this is req.sessions', req.session);
@@ -73,17 +85,14 @@ const salt = bcrypt.genSaltSync(10);
 //endpoints
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  console.log('password username', username, password);
    new User({group_user: username, group_password: password})
    .fetch().
    then(function(data) {
       var user = data;
-      console.log('this is data', data);
       if(user === null) {
          return done(null, false, {message: 'Invalid username or password'});
       } else {
          user = data.toJSON();
-         console.log('this is password', user.group_password);
          if(bcrypt.compareSync(password, user.group_password)) {
             return done(null, false, {message: 'Invalid username or password'});
          } else {
@@ -106,19 +115,19 @@ passport.deserializeUser(function(user, done) {
 
 
 app.post('/login',  function(req, res, next) {
+  console.log('this is login req',req);
+  console.log('this is login res',res);
   passport.authenticate('local', function(err, user, info) {
     if (err) {
       return next(err);
     }
     if (!user) {
-      console.log('user not found');
       return res.send('authentication failed');
     }
     req.logIn(user, function(err) {
       if (err) {
         return next(err);
       }
-      console.log(req.session);
       return res.status(200).json(user);
     });
   })(req, res, next);
@@ -142,8 +151,9 @@ app.get('/logout', function(req, res) {
 //      return res.send(response);
 //    })
 // })
+
+// add new camper
 app.post('/api/newCamper', isAuthenticated, (req, res, id) => {
-  console.log('req updateCamper', req.body);
   store
     .updateCamper({
       name_first: req.body.name_first,
@@ -163,7 +173,7 @@ app.post('/api/newCamper', isAuthenticated, (req, res, id) => {
       father_name_last: req.body.father_name_last,
       mother_name_last: req.body.mother_name_last,
       street: req.body.street,
-      street: req.body.street_two,
+      street_two: req.body.street_two,
       city: req.body.city,
       state: req.body.state,
       postal_code: req.body.postal_code,
@@ -183,8 +193,9 @@ app.post('/api/newCamper', isAuthenticated, (req, res, id) => {
     .then(() => res.sendStatus(200))
 })
 
+// update camper info
+
 app.put('/api/updateCamper/:id', isAuthenticated, (req, res, id) => {
-  console.log('req updateCamper', req.body);
   store
     .updateCamper({
       name_first: req.body.name_first,
@@ -236,19 +247,19 @@ app.put('/api/register/:id', isAuthenticated, (req, res, id) => {
 
 
 
+// retrieve camper info from mysql
 
 app.get('/api/fetchCampers/:id', isAuthenticated, (req,res, id) => {
-    console.log('req fetchCampers', req.params);
   store
   .fetchCampers({
     zkp_camper_id: req.params.id
   })
   .then((response) => {
-    console.log('this is res fetchCampers', response);
     return res.send(response);
   })
   .catch((error) => {
-    console.log('this is error, fetchCampers', error)
+    // added
+    res.sendStatus(500);
   })
 })
 
@@ -260,7 +271,6 @@ app.get('/api/fetchGroup/:event/group', isAuthenticated, (req,res, id) => {
     zk_group_id: req.query.group
   })
   .then((response) => {
-    console.log('this is res fetch', response);
     return res.send(response);
   })
   .catch((error) => {
@@ -269,7 +279,7 @@ app.get('/api/fetchGroup/:event/group', isAuthenticated, (req,res, id) => {
 })
 
 
-
+// delete camper
 
 app.delete('/api/removeCamper/:id', (req, res, id) => {
    store
@@ -279,19 +289,12 @@ app.delete('/api/removeCamper/:id', (req, res, id) => {
      return res.sendStatus(status);
    })
    .catch((error) => {
-     console.log('this is error', error)
    })
 
 
 })
 
 
-
-
-// app.listen(7555, () =>{
-//   console.log('Server running on http://localhost:7555');
-// })
-
-app.listen(8000, '0.0.0.0', function() {
-    console.log('Listening to port:  ' + 8000);
+app.listen(12001, '0.0.0.0', function() {
+    console.log('Listening to port:  ' + 12001);
 });

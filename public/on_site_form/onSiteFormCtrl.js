@@ -17,7 +17,6 @@ app.controller('onSiteFormCtrl', function($scope, $routeParams, $route, $locatio
      event: data.zk_event_id,
      group: data.zk_group_id
    };
-   console.log('this is submit Camperdata', data);
   formSrvc.submitCamper(data)
     .then(function(data) {
       if (data == "OK") {
@@ -46,12 +45,10 @@ $scope.getAvailableCamper = function(data) {
 
   $scope.getCamperInfo = function() {
     formSrvc.getCamperInfo($scope.camperId).then(function(response) {
-      console.log('this is response data, ', response);
       $scope.camperData = response[0];
       $scope.event_name = response[0].event_name;
       $scope.start_date = response[0].event_start_date;
       $scope.end_data = response[0].event_end_date;
-      console.log('this is camperData', $scope.camperData);
     })
   }
 

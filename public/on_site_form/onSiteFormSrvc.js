@@ -6,7 +6,6 @@ app.service('onSiteFormSrvc', function($http, $q, $location){
        var id = data.zkp_camper_id;
        data.status = "Submitted";
        data.registration_date = Date.now();
-       console.log('this is camper id', id);
        var deferred = $q.defer();
        $http({
          url: '/api/updateCamper/' + id,
@@ -19,7 +18,6 @@ app.service('onSiteFormSrvc', function($http, $q, $location){
      }
 
      this.getAvailableCamper = function(params1, params2) {
-       console.log('this is fetchgroup data, ', data);
          var deferred = $q.defer();
          $http({
            url: '/api/fetchGroup/:event/group',

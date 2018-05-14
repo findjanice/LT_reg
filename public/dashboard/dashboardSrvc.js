@@ -13,7 +13,6 @@ this.fetchCampers = function(id) {
       data: id
     }).then(function(response) {
       camperInfo = response.data;
-      console.log('this is response data SRVC', response.data)
       deferred.resolve(response.data)
     })
     return deferred.promise;
@@ -28,9 +27,6 @@ this.fetchCampers = function(id) {
         method: 'GET',
         params: {"event" : data.event, "group": data.group},
       }).then(function(response) {
-            console.log('this is fetchgroup data, ', response);
-        // camperInfo = response.data;
-        // console.log('this is response data SRVC', response.data)
         deferred.resolve(response)
       })
       return deferred.promise;
@@ -48,7 +44,6 @@ this.fetchCampers = function(id) {
       }
 
 this.camperInfo = function() {
-  console.log('this is params', params);
   return camperInfo;
 }
 
