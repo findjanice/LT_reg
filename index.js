@@ -5,7 +5,7 @@ const promise = require('bluebird');
 const _ = require('lodash');
 
 const bcrypt = require('bcrypt');
-const session = require('express-session');
+const session = require('cookie-session');
 const cookieParser = require('cookie-parser')
 
 const passport = require('passport');
@@ -115,9 +115,9 @@ passport.deserializeUser(function(user, done) {
 
 
 app.post('/login',  function(req, res, next) {
-  console.log('this is login req',req);
-  console.log('this is login res',res);
   passport.authenticate('local', function(err, user, info) {
+    console.log('this is passport user',  user);
+    console.log('this is passport info',  info);
     if (err) {
       return next(err);
     }
@@ -294,6 +294,7 @@ app.delete('/api/removeCamper/:id', (req, res, id) => {
 
 })
 
+process.env.NODE_ENV = 'production';
 
 app.listen(12001, '0.0.0.0', function() {
     console.log('Listening to port:  ' + 12001);
